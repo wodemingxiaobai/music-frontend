@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .parent {
+            display: flex;
+            width: 400px;
+            height: 200px;
+            background: #f0f0f0;
+            align-items: center; /* 子元素在次轴（垂直）居中 */
+            /* justify-content: center; 取消注释可让子元素在主轴（水平）居中 */
+        }
+        .child {
+           
+            background: #42b983;
+            text-align: center; /* 仅影响元素内部的文本/inline内容 */
+        }
+    </style>
+</head>
+<body>
+    <div class="parent">
+        <div class="child">
+            我是子元素内部的文本
+        </div>
+    </div>
+</body>
+</html>
+    

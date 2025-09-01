@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>用户登录</title>
+    <!-- 引入 Element UI 样式 -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/element-ui/lib/theme-chalk/index.css"
+    />
+    <!-- 引入 Vue -->
+    <script src="https://unpkg.com/vue@2/dist/vue.js"></script>
+    <!-- 引入 Element UI 组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
+        <!-- 用户注册信息 -->
+        <el-form-item label="用户名" prop="name">
+            <el-input v-model="ruleForm.name" placeholder="请输入用户名" prefix-icon="el-icon-user">
+            </el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="password">
+            <el-input :type="showPassWord ? 'text' : 'password'" v-model="ruleForm.password" placeholder="请输入密码"
+                :prefix-icon="showPassWord ? 'el-icon-unlock' : 'el-icon-lock'"><i slot="suffix"
+                    :class="[showPassWord ? 'el-icon-view' : 'el-icon-more']" @click="showPassWord = !showPassWord"></i>
+            </el-input>
+        </el-form-item>
+        <!-- 记住用户和从注册转向登录 -->
+        <el-form-item>
+            <el-checkbox v-model="rememberMe" class="remember-me" style="float: left;">
+                记住我
+            </el-checkbox>
+            <el-link type="primary" @click="goToLogin" style="float: right;">
+                已有账号，直接登录
+            </el-link>
+        </el-form-item>
+        <!-- 事件按钮 -->
+        <el-form-item>
+            <el-button type="primary" @click="submitForm('ruleForm')">注册</el-button>
+            <el-button @click="resetForm('ruleForm')">重置</el-button>
+        </el-form-item>
+    </el-form>
+    </div>
+
+    <script>
+      new Vue({
+        el: "#app",
+        data() {
+          var validatePassWord = (rule, value, callback) => {
+            const reg = /^[a-zA-Z0-9].{5,9}$/; //这个正则表达式表明密码必须字母或者数字开头，且
+            if (!value) {
+              return callback(new Error("密码不能为空"));
+            }
+            if (!reg.test(value)) {
+              return callback(new Error("密码长度6-10，且字母或数字开头"));
+            }
+            callback(); //校验规则最好一定要调用callback后valid才会合法
+          };
+          return {
+            ruleForm: {
+              name: "",
+              password: "",
+            },
+            showPassWord: true,
+            rememberMe:false,
+            rules: {
+              name: [
+                { required: true, message: "请输入用户名", trigger: "blur" },
+                {
+                  min: 3,
+                  max: 5,
+                  message: "长度在 3 到 5 个字符",
+                  trigger: "blur",
+                },
+              ],
+              password: [
+                {
+                  validator: validatePassWord,
+                  trigger: "blur",
+                  required: true,
+                },
+              ],
+            },
+          };
+        },
+        methods: {
+          submitForm(formName) {
+            this.$refs[formName].validate((valid) => {
+              if (valid) {
+                alert("在这里提交，但是还没有实现发送请求");
+              } else {
+                console.log("error submit!!");
+                return false;
+              }
+            });
+          },
+          resetForm(formName) {
+            this.$refs[formName].resetFields();
+          },
+        },
+      });
+    </script>
+  </body>
+</html>

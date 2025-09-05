@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>testcookietostorage</title>
+  </head>
+  <body>
+    <button class="storageToCookie">存储转cookie</button>
+    <script>
+        document.cookie='name=Bob'
+        document.cookie='age=23'
+      //cookie写入存储
+      function writeCookieToStorage() {
+        let cookieObj = {};
+        let cookieAray = document.cookie.split("; ");
+        cookieAray.forEach((pair) => {
+          const [key, ...valueParts] = pair.split("=");
+          if (key) {
+            cookieObj[key] = decodeURIComponent(valueParts.join("=")); // 解码特殊字符
+          }
+        });
+        localStorage.setItem("cachedCookies", JSON.stringify(cookieObj));
+      }
+      //存储转cookie
+      function writeStorageToCookie() {
+        const storedStr = localStorage.getItem('cachedCookies');
+        if (!storedStr) return {};
+
+        let cookieObj={};
+        let cookieStr=''
+        try {
+            cookieObj= JSON.parse(storedStr); // 转为对象
+        } catch (e) {
+          console.error("读取本地Cookie失败：", e);
+          return {};
+        }
+        Object.entries(cookieObj).forEach(([key, value]) => {
+          // 拼接Cookie字符串（包含键值对和配置）
+           cookieStr = `${key}=${encodeURIComponent(
+            value
+          )}; path='/'; `;
+          document.cookie = cookieStr; // 逐个设置
+        });
+      }
+      writeCookieToStorage();
+      document.querySelector('.storageToCookie').addEventListener('click',writeStorageToCookie)
+    </script>
+  </body>
+</html>

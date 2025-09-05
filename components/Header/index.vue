@@ -37,12 +37,13 @@
     </div>
     <div class="search-area">
       <el-input placeholder="搜索歌曲、专辑或歌手" clearable prefix-icon="el-icon-search" v-model="searchWord"
-        class="custom-search"></el-input>
+        @keyup.enter.native="goSearch" class="custom-search"></el-input>
     </div>
 
     <div class="user-area">
 
-      <div v-show="!isLogined" class="login-section"><el-button size="medium" round class="login-btn" @click="$router.push('/registerOrLogin')">登录/注册</el-button>
+      <div v-show="!isLogined" class="login-section"><el-button size="medium" round class="login-btn"
+          @click="$router.push('/registerOrLogin')">登录/注册</el-button>
       </div>
       <div v-show="isLogined">
         <!-- 用户头像 -->
@@ -65,25 +66,47 @@
       </div>
 
     </div>
+
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from 'vuex';
 export default {
   name: 'Header',
   data() {
     return {
       activeIndex: '0',//默认选中的导航栏
       searchWord: '',
+      searchType: 'song',
       isLogined: false,//是否已经登陆过了
       userAvatarUrl: "https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png",//用户头像
     }
   },
   methods: {
+    ...mapActions('search', ['getSearchSong']),
     handleSelect() {
       console.log('要选择了');
-    }
+    },
+    goSearch() {
+      // 如果有关键字就进行搜索否则默认搜索
+      if (this.searchWord.trim() != '') {
+        
+        // 搜索完成后跳转到搜索页面
+        this.$router.push({
+          name: 'search',
+          params: { keyword: this.searchWord }
+        })
+
+        
+      }
+    },
+
+  },
+  computed: {
+
   }
+
 }
 </script>
 
@@ -107,7 +130,7 @@ export default {
     display: flex;
     align-items: center;
     gap: 40px;
-    
+
 
     .music-logo {
       img {
@@ -124,6 +147,7 @@ export default {
 
     .music-menu {
       z-index: 1;
+
       .el-menu-demo {
         border-bottom: none;
       }
@@ -135,7 +159,7 @@ export default {
         line-height: 80px;
         font-size: 15px;
         transition: all 0.3s ease;
-      
+
 
         &:hover {
           background-color: rgba(44, 62, 80, 0.03);
@@ -169,8 +193,8 @@ export default {
 
   //搜索区域
   .search-area {
-   
-    
+
+
     width: 250px;
 
     .custom-search {
@@ -273,28 +297,29 @@ export default {
     padding: 0 2px;
     height: 70px;
     justify-content: space-between;
+
     .left-area,
     .search-area,
     .right-area {
       flex: 1;
     }
 
-    
+
 
     .left-area {
-      .el-menu-demo{
+      .el-menu-demo {
         display: flex;
-       
-        
-        .el-menu-item{
+
+
+        .el-menu-item {
           padding: 0;
           flex: 1;
           margin-right: 0 2px;
-          
+
         }
-        
+
       }
-    
+
     }
   }
 }

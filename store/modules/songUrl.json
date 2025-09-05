@@ -1,0 +1,58 @@
+{
+  "extName": "mp3",
+  "classmap": {
+    "attr0": 234881032
+  },
+  "status": 1,
+  "volume": -9.6,
+  "std_hash_time": 239046,
+  "backupUrl": [
+    "http://fs.youthandroid.kugou.com/202509042117/aa0b996de90fc069ddd94b834f611189/v3/426d6bc62a73df288f55cb3fca8d2a62/yp/full/ap3116_us1440652203_mi336d5ebc5436534e61d16e63ddfca327_pi411_mx0_qu128_ct441300_s57013112.mp3"
+  ],
+  "url": [
+    "http://fs.youthandroid2.kugou.com/202509042117/32962cb53509ac0008d798d16c6f4f34/v3/426d6bc62a73df288f55cb3fca8d2a62/yp/full/ap3116_us1440652203_mi336d5ebc5436534e61d16e63ddfca327_pi411_mx0_qu128_ct441300_s57013112.mp3",
+    "http://fs.youthandroid.kugou.com/202509042117/aa0b996de90fc069ddd94b834f611189/v3/426d6bc62a73df288f55cb3fca8d2a62/yp/full/ap3116_us1440652203_mi336d5ebc5436534e61d16e63ddfca327_pi411_mx0_qu128_ct441300_s57013112.mp3"
+  ],
+  "std_hash": "426D6BC62A73DF288F55CB3FCA8D2A62",
+  "tracker_through": {
+    "identity_block": 0,
+    "cpy_grade": 5,
+    "musicpack_advance": 1,
+    "all_quality_free": 0,
+    "cpy_level": 1
+  },
+  "trans_param": {
+    "display_rate": 0,
+    "display": 0,
+    "ogg_128_hash": "CFF4D61FA1318100CE18A88EBB52E335",
+    "qualitymap": {
+      "attr0": 2134884469,
+      "attr1": 262143
+    },
+    "pay_block_tpl": 1,
+    "union_cover": "http://imge.kugou.com/stdmusic/{size}/20250630/20250630182931718156.jpg",
+    "language": "粤语",
+    "hash_multitrack": "8F0FB2EC18A63AE42C9347847FDFD820",
+    "cpy_attr0": 58735808,
+    "ipmap": {
+      "attr0": 2200097263616
+    },
+    "ogg_320_hash": "61657AB2BCB1D9C6CB03C0B2AB94B40F",
+    "classmap": {
+      "attr0": 234881032
+    },
+    "ogg_128_filesize": 2782044,
+    "ogg_320_filesize": 9801453
+  },
+  "fileHead": 0,
+  "auth_through": [],
+  "timeLength": 239,
+  "bitRate": 128000,
+  "priv_status": 1,
+  "volume_peak": 1.4,
+  "volume_gain": 0,
+  "q": 0,
+  "fileName": "喜欢你",
+  "fileSize": 3825356,
+  "hash": "426D6BC62A73DF288F55CB3FCA8D2A62"
+}

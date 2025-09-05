@@ -44,7 +44,7 @@
       <RegisterForm v-show="!isLogin" :changeIsLogin="changeIsLogin"></RegisterForm>
       <LoginForm v-show="isLogin" :changeIsLogin="changeIsLogin"></LoginForm>
     </div>
-   
+    
 
   </div>
 </template>

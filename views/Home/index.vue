@@ -106,7 +106,9 @@ export default {
         }
     },
     mounted() {
-        this.getrecommendedSongs();
+        if(localStorage.getItem('cachedStr')){
+            this.$api.copyAllLocalStorageToCookies()
+        }  
     },
     computed: {
         //存放vuex的数据

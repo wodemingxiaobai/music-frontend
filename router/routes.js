@@ -1,6 +1,7 @@
 
 import RegisterOrLogin from "@/views/RegisterOrLogin"
 import Home from '@/views/Home'
+import Search from '@/views/Search'
 export default [
     {
         path: '/', // 首页路径
@@ -15,8 +16,8 @@ export default [
       },
       {
         path: '/search/:keyword?', // 搜索路径
-        name: 'registerOrLogin',
-        component: RegisterOrLogin
+        name: 'search',
+        component: Search
       },
 
 

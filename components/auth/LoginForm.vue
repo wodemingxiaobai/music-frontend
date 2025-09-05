@@ -54,7 +54,7 @@
             </el-form-item>-->
             <el-form-item>
                 <div class="form-item-button">
-                    <el-button type="primary" @click="$api.goLogin(loginForm2.telephone,loginForm2.code)">登录</el-button>
+                    <el-button type="primary" @click="goLogin">登录</el-button>
                     <el-button @click="resetForm('loginForm')">重置</el-button>
                 </div>
             </el-form-item>
@@ -124,6 +124,14 @@ export default {
         resetForm(formName) {
             this.$refs[formName].resetFields();
         },
+        // 根据是否记住我将cookie的值放入本地存储中
+        goLogin(){
+            if(this.rememberMe){
+                this.$api.copyAllCookiesToLocalStorage()
+            }
+            this.$api.goLogin(loginForm2.telephone,loginForm2.code)
+
+        }
     },
 
 }

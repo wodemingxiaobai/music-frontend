@@ -3,6 +3,7 @@
     <Header></Header>
     <router-view></router-view>
    <Footer></Footer>
+   <AudioPlayer /> <!-- 添加播放器组件 -->
   </div>
 </template>
 <script>

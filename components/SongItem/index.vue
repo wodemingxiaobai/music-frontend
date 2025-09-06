@@ -68,6 +68,7 @@ export default {
     },
     methods: {
         ...mapActions('search', ['getSong']),
+        ...mapActions('player', ['playSong']),
         formatDuration(seconds) {
             if (!seconds) return '00:00'
             const minute = Math.floor(seconds / 60)
@@ -77,43 +78,25 @@ export default {
         tableRowClassName({ row, rowIndex }) {
             return 'custom-table-row';
         },
-        handlePlay(row) {
-            this.getSong(row.FileHash).then((result) => {
-                console.log('我延迟了才调用的');
-                console.log('result', song);
-            }).catch((err) => {
+        async handlePlay(row) {
+            const loading = this.$loading({
+                text: '正在加载音乐...',
+                lock:true,
+                fullscreen: true,
+                background: 'rgba(255, 255, 255, 0.7)'
+            })
+            try {
+                console.log('点击按钮后的当前歌曲',row);
+                // 调用Vuex action播放歌曲
+                await this.playSong(row)
 
-            });
+            } catch (error) {
+                console.error('播放失败:', error)
+                this.$message.error('播放失败，请稍后重试')
 
-
-
-            // try {
-            //     // 显示加载状态
-            //     const loading = this.$loading({
-            //         text: '正在加载音乐...',
-            //         target: this.$el,
-            //         background: 'rgba(255, 255, 255, 0.7)'
-            //     })
-
-            //     // 调用API获取播放地址
-            //     const response = await this.$api.getSongUrl(row.FileHash)
-
-            //     // 假设接口返回格式为 { data: { url: 'xxx.mp3' } }
-            //     if (response.data && response.data.url) {
-            //         // 触发播放事件，传递歌曲信息和播放地址
-            //         this.$emit('play-song', {
-            //             song: row,
-            //             url: response.data.url
-            //         })
-            //     } else {
-            //         this.$message.error('获取播放地址失败')
-            //     }
-
-            //     loading.close()
-            // } catch (error) {
-            //     console.error('播放失败:', error)
-            //     this.$message.error('播放失败，请稍后重试')
-            // }
+            } finally {
+                loading.close()
+            }
         },
         handleAdd(row) {
             // 添加到播放列表逻辑

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import auth from './modules/auth'
 import recommend from './modules/recommend'
 import search from './modules/search'
+import player from './modules/player';
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -18,5 +19,6 @@ export default new Vuex.Store({
     auth,
     recommend,
     search,
+    player,
   }
 })

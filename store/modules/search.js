@@ -33,7 +33,6 @@ const actions = {
   async getSong({ commit }, hash) {
     if (hash) {
       let result=await api.getSongUrl(hash);
-      saveStroeToJson(result,'songUrl.json')
       commit("GetSong", result);    
         
     }
